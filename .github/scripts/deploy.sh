@@ -18,9 +18,9 @@ echo "Deployment files have been prepared"
 echo "Deploying application..."
 
 # Copying files to the server
-scp -i ~/.ssh/github_actions_key .env.prod $EC2_USER@$EC2_HOST:~/.env
-scp -i ~/.ssh/github_actions_key docker-compose.yml $EC2_USER@$EC2_HOST:~/
+scp -i ~/.ssh/deploy_key .env.prod $EC2_USER@$EC2_HOST:~/.env
+scp -i ~/.ssh/deploy_key docker-compose.yml $EC2_USER@$EC2_HOST:~/
 # Running the application on the server
-ssh -i ~/.ssh/github_actions_key $EC2_USER@$EC2_HOST "cd ~/ && docker compose up -d"
+ssh -i ~/.ssh/deploy_key $EC2_USER@$EC2_HOST "cd ~/ && docker compose up -d"
 
 echo "Deployment completed successfully"
